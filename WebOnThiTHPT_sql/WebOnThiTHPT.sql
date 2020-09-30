@@ -182,39 +182,19 @@ go
 go
 
 
-   --13//-------------
- create table LopHoc
- (
-	MaLopHoc char (15),
-	MaKhoaHoc char (15),
-	MaGiangVien char(15),
-	MaQuanTriVien char (15),
-	TenLopHoc nvarchar(100),
-	SoLuongHocVien int,
-	NgayKhaiGiang Date,
-	NgayKetThuc Date,
-	LichHoc DateTime,
-	primary key (MaLopHoc),
-	constraint lh_MaKhoaHoc_fk FOREIGN KEY (MaKhoaHoc)
-		 REFERENCES KhoaHoc (MaKhoaHoc),
-	constraint lh_MaGiangVien_fk FOREIGN KEY (MaGiangVien)
-		 REFERENCES GiangVien (MaGiangVien),
-	constraint lh_MaQuanTriVien_fk FOREIGN KEY (MaQuanTriVien)
-		 REFERENCES QuanTriVien (MaQuanTriVien)
- )
- go
+ 
 
     --14//-------------
  create table BaiHoc
  (
 	MaBaiHoc char (15),
-	MaLopHoc char (15),
+	MaKhoaHoc char (15),
 	TenBaiHoc nvarchar (100),
 	Video nvarchar (400),
 	NgayDang DateTime,
 	primary key (MaBaiHoc),
-	constraint bh_MaLopHoc_fk FOREIGN KEY (MaLopHoc)
-		 REFERENCES LopHoc (MaLopHoc)
+	constraint bh_MaKhoaHoc_fk FOREIGN KEY (MaKhoaHoc)
+		 REFERENCES KhoaHoc (MaKhoaHoc)
  )
  go
 
@@ -222,7 +202,7 @@ go
  create table HocVien
  (
 	MaHocVien char (15),
-	MaLopHoc char (15),
+	MaKhoaHoc char (15),
 	MaQuanTriVien char (15),
 	HoTen nvarchar (100),
 	NgaySinh date,
@@ -231,8 +211,8 @@ go
 	Email varchar,
 	ThoiGianDangKy date,
 	primary key (MaHocVien),
-	constraint hv_MaLopHoc_fk FOREIGN KEY (MaLopHoc)
-		 REFERENCES LopHoc (MaLopHoc),
+	constraint hv_MaKhoaHoc_fk FOREIGN KEY (MaKhoaHoc)
+		 REFERENCES KhoaHoc (MaKhoaHoc),
 	constraint hv_MaQuanTriVien_fk FOREIGN KEY (MaQuanTriVien)
 		 REFERENCES QuanTriVien (MaQuanTriVien)
  )
@@ -265,21 +245,7 @@ go
  )
  go
 
-     --18//-------------
- create table BinhLuan
- (
-	MaBinhLuan char (15),
-	MaBaiHoc char (15),
-	MaHocVien char (15),
-	NoiDung nvarchar (100),
-	ThoiGianDang datetime,
-	primary key (MaBinhLuan),
-	constraint bl_MaBaiHoc_fk FOREIGN KEY (MaBaiHoc)
-		 REFERENCES BaiHoc (MaBaiHoc),
-	constraint bl_MaHocVien_fk FOREIGN KEY (MaHocVien)
-		 REFERENCES HocVien (MaHocVien)
- )
- go
+
 
      --19//-------------
  create table Feedback
